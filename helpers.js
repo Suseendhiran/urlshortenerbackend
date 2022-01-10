@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import { ObjectId } from "mongodb";
 import nodemailer from "nodemailer";
 import jwt from "jsonwebtoken";
+import jwt_decode from "jwt-decode";
 
 async function createUser(userDetails) {
   return await client
@@ -73,6 +74,11 @@ async function sendMail(email, html, subject, text) {
   });
 }
 
+async function getUserIdFromToken(token) {
+  const { id } = jwt_decode(token);
+  return id;
+}
+
 export {
   createUser,
   getUserByEmail,
@@ -82,4 +88,5 @@ export {
   updateResetToken,
   sendMail,
   getUserToken,
+  getUserIdFromToken,
 };
