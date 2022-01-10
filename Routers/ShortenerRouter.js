@@ -24,7 +24,7 @@ router.route("/:shorturl").get(async (req, res) => {
       { $inc: { "urlsDetails.$.clicks": 1 } }
     );
 
-  if (response.originalUrl && updateClick.modifiedCount > 0) {
+  if (response && updateClick.modifiedCount > 0) {
     res.redirect(response.originalUrl);
     return;
   }

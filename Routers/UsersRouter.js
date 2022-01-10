@@ -169,4 +169,17 @@ router.route("/resetpassword").put(async (req, res) => {
   }
 });
 
+router.route("/:id").get(async (req, res) => {
+  const { id } = req.params;
+  const urls = await client
+    .db("urlShortener")
+    .collection("users")
+    .findOne({ _id: ObjectId(id) }, { projection: { urlsDetails: 1, _id: 0 } });
+  if (urls) {
+    res.send(urls);
+    return;
+  }
+  res.send({ message: "Error!" });
+});
+
 export const usersRouter = router;
