@@ -120,7 +120,7 @@ router.route("/forgotpassword").put(async (req, res) => {
     return;
   }
   const resetToken = crypto.randomBytes(32).toString("hex");
-  const resetPasswordLink = `https://resetpassword9.netlify.app/resetpassword?token=${resetToken}&id=${userDetails._id}`;
+  const resetPasswordLink = `https://urly.netlify.app/resetpassword?token=${resetToken}&id=${userDetails._id}`;
 
   const html = `<div>
               <div>Click the below link to reset your password</div>
